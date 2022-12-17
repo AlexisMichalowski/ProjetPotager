@@ -11,7 +11,7 @@ typedef struct Puceron
     int directionP; 
     int reproductionP;
     coord coordP;
-    int index;   //La position de la souris dans le tableau de ensemble souris
+    int index;   //La position du puceron dans le tableau de ensemble puceron
     int tourSuccessifTomate;	//Le nombre de tour d'affilé pendant lesquels le Puceron a manger des tomates
     } puceron;
 
