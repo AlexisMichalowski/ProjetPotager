@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-#define SIZE 30
+#include "fonctionsPucerons.h"
 
 void initialiserPotager();
 /* Crée un Potager Initialisé, avec des tomates Grosses à Chaque Cases*/

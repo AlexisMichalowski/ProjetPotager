@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "fonctionspucerons.h": "c",
+        "stddef.h": "c"
+    }
+}
