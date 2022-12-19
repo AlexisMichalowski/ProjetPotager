@@ -17,7 +17,7 @@ typedef struct Coord
 typedef struct Puceron
     {
     int ageP ;
-    int directionP; 
+    int directionP;              
     int reproductionP;
     Coord coordP;
     int index;                  //La position du puceron dans le tableau de ensemble puceron
@@ -63,7 +63,7 @@ void vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron);
 Puceron *retournePuceron(EnsemblePuceron *ensembleP,int i);
 /*Retourne un pointeur sur le puceron positionnée à l’index i dans le tableau de
 EnsemblePuceron. Si l’index en paramètre est plus élevé que le cardinal de l’ensemble, retourne
-le pointeur NUL.*/
+le pointeur NULL.*/
 
 void mortPuceron(EnsemblePuceron *ensembleP,Puceron puceron);
 /*Retire le puceron en paramètre de l’ensemble de puceron en paramètre*/

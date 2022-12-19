@@ -10,13 +10,13 @@ void affichePotager(char mat[SIZE][SIZE]);
 /*Affiche une Matrice de char de taille SIZExSIZE*/
 
 
-void maturiteTomate(maturite[SIZE][SIZE]);
+void maturiteTomate(int maturite[SIZE][SIZE]);
 /* Ajoute 1 tour de maturité a chaque tomate*/
 
-void affichageTomate(maturite[SIZE][SIZE],potager[SIZE][SIZE]);
+void affichageTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]);
 /* Change l'apparence de la tomate selon sa maturité*/
 
-void puceronMangeTomate(Puceron *puceron, maturite[SIZE][SIZE]);
+void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]);
 /* Lorsque le puceron est sur la meme case qu'une tomate mature, remet la maturité de la tomate à 0 et compte le nombre de tomates consécutives mangées*/
 
 
@@ -42,18 +42,18 @@ void affichePotager(char mat[SIZE][SIZE]){
 /* initialise les pucerons*/
 /* fonction deplacementP */
 /* fonction reproP */
-void reproductionPuceron(Puceron *puceron);
-void reproductionPuceron(Puceron *puceron){
-    if (*puceron).tourSuccessifTomate == 5 {
-        ajouterPuceron(&puceron);
+void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron);
+void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron){
+    if ((*puceron).tourSuccessifTomate == 5) {
+        ajouterPuceron(ensembleP,*puceron);
         }
     }
 
 /* fonction qui ajoute 1 tour de maturité a chaque tomate*/
-void maturiteTomate(maturite[SIZE][SIZE]){               /*ajouter le booléen de PmangeT dans les parametres*/
+void maturiteTomate(int maturite[SIZE][SIZE]){               /*ajouter le booléen de PmangeT dans les parametres*/
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if maturité[i][j]<5 {
+            if (maturite[i][j]<5) {
                     maturite[i][j]++;
                 }
             }
@@ -61,12 +61,12 @@ void maturiteTomate(maturite[SIZE][SIZE]){               /*ajouter le booléen d
     }
 
 /* fonction qui change l'apparence de la tomate selon sa maturité*/
-void affichageTomate(maturite[SIZE][SIZE],potager[SIZE][SIZE]) {
+void affichageTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if maturite[i][j] == 0 {
+            if (maturite[i][j] == 0) {
                 potager[i][j]='O';
-            } else if 2<maturite[i][j]<4 {
+            } else if (2<maturite[i][j]<4) {
                 potager[i][j]='o';
                 } else potager[i][j]='.';
             }
@@ -79,12 +79,12 @@ void affichageTomate(maturite[SIZE][SIZE],potager[SIZE][SIZE]) {
 /* orientationP
 
 /* fonction PmangeT*/
-void PuceronMangeTomate(Puceron *puceron, maturite[SIZE][SIZE]){     /* appelle coordonnées, le puceron pour ajoiuter le tour successif et la table des maturité*/
+void PuceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){     /* appelle coordonnées, le puceron pour ajoiuter le tour successif et la table des maturité*/
     for (int i=0;i<SIZE;i++){
 	    for (int j=0;j<SIZE;j++){   
-            if (*puceron).coordP.x == i {
-                if (*puceron).coordP.y == j {
-                    if maturite[i][j] == 5 {                           /* le puceron mange la tomate uniquement si elle est mature*/
+            if ((*puceron).coordP.x == i ){
+                if ((*puceron).coordP.y == j) {
+                    if (maturite[i][j] == 5) {                           /* le puceron mange la tomate uniquement si elle est mature*/
                         maturite[i][j] = 0;
                         (*puceron).tourSuccessifTomate++ ;           /*on ajoute +1 au nombre de tomates consécutives mangées*/
                     } else (*puceron).tourSuccessifTomate = 0;            /* il n'a pas mangé de tomate ce tour ci, donc compteur retourne a 0*/
@@ -102,11 +102,11 @@ void PuceronMangeTomate(Puceron *puceron, maturite[SIZE][SIZE]){     /* appelle 
 /* reproC */
 /*mortC */
 /* fonction CmangeP*/
-void coccinelleMangePuceron(Puceron *puceron, Coccinelle *coccinelle);
-void coccinelleMangePuceron(Puceron *puceron, Coccinelle *coccinelle){       
-    if (*puceron).coordP.x == (*coccinelle).coordC.x {
-        if (*puceron).coordP.y == (*coccinelle).coordC.y {
-            mortPuceron(&puceron);    
+void coccinelleMangePuceron(EnsemblePuceron *ensembleP,Puceron *puceron, Coccinelle *coccinelle);
+void coccinelleMangePuceron(EnsemblePuceron *ensembleP,Puceron *puceron, Coccinelle *coccinelle){       
+    if ((*puceron).coordP.x == (*coccinelle).coordC.x) {
+        if ((*puceron).coordP.y == (*coccinelle).coordC.y) {
+            mortPuceron(ensembleP, *puceron);    
             }
         }
     }
