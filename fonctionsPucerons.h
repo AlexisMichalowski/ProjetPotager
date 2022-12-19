@@ -1,7 +1,13 @@
 # ifndef HEADER_FILE_NAME
 # define HEADER_FILE_NAME
 
-#include <stddef.h>
+#include <stddef.h>   //utile pour le pointeur NULL
+
+#include <time.h>     //pour les nombres aléatoires
+#include <stdlib.h>
+
+#include <stdio.h>
+
 
 #define MAXP 900    //Nombre max de pucerons
 #define MAXC 900    //Nombre max de coccinelle 
@@ -16,12 +22,11 @@ typedef struct Coord
 
 typedef struct Puceron
     {
-    int ageP ;
+    int ageP ;                                  
     int directionP;              
-    int reproductionP;
     Coord coordP;
     int index;                  //La position du puceron dans le tableau de ensemble puceron
-    int tourSuccessifTomate;	//Le nombre de tour d'affilé pendant lesquels le Puceron a manger des tomates
+    int tourSuccessifTomate;	//Le nombre de tour d'affilé pendant lesquels le Puceron a manger des tomates, utile pour leur reproduction
     } Puceron;
 
 
@@ -34,11 +39,11 @@ typedef struct EnsemblePuceron
 
 //Pour plus tard (Niveau 2)
 
-typedef struct coccinelle
+typedef struct Coccinelle
     {
     int ageC;
     int directionC;
-    int reproductionC;
+    int nbPuceronsMange;    //Le nombre de pucerons mangé par la coccinelle, utile pour la reproduction
     Coord coordC;
     } Coccinelle;
 
@@ -57,17 +62,23 @@ void ensemblePuceronVide(EnsemblePuceron *ensembleP);
 void ajouterPuceron(EnsemblePuceron *ensembleP,Puceron p);
 /* ajoute le puceron passé en paramètre a l'ensemble */
 
-void vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron);
+void vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
 /* Le puceron a vécu un tour de plus et gagne un jour de vie */
 
-Puceron *retournePuceron(EnsemblePuceron *ensembleP,int i);
+Puceron* retournePuceron(EnsemblePuceron *ensembleP,int i);
 /*Retourne un pointeur sur le puceron positionnée à l’index i dans le tableau de
 EnsemblePuceron. Si l’index en paramètre est plus élevé que le cardinal de l’ensemble, retourne
 le pointeur NULL.*/
 
-void mortPuceron(EnsemblePuceron *ensembleP,Puceron puceron);
+void mortPuceron(EnsemblePuceron *ensembleP,Puceron puceron,Puceron* matricePuceron[SIZE][SIZE]);
 /*Retire le puceron en paramètre de l’ensemble de puceron en paramètre*/
 
+void initialiserMatricePuceron(Puceron* matricePuceron[SIZE][SIZE]);
+/*Initialiser la mtrice Puceron avec des pointeurs NULL*/
+
+void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensembleP,int Proba);
+/*Remplit la matrice de pucerons de telle manière qu’il y ait Proba% de chances pour chaque case
+de contenir un puceron. Remplit l’ensemble de pucerons en même temps.*/ 
 
 
 
