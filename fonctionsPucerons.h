@@ -80,6 +80,16 @@ void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensem
 /*Remplit la matrice de pucerons de telle manière qu’il y ait Proba% de chances pour chaque case
 de contenir un puceron. Remplit l’ensemble de pucerons en même temps.*/ 
 
+void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron);
+/*Un Puceron se deplace si il le peut, d'une case dans sa direction */
 
+Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int y);
+/*renvois les coordonnées au hasard d'une case adjacente libre, si une telle case n'existe pas renvois (-1,-1)*/
+
+char charDirection(int directon);
+/*renvois le charactère associé à une direction, fonctionne pour les pucerons et les coccinnelles*/
+
+void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
+/* change l'orientation du puecron si il n'y a pas de tomates dans sa direction et si il y a un puceron dans sa direction*/
 
 #endif
