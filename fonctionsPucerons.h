@@ -62,8 +62,9 @@ void ensemblePuceronVide(EnsemblePuceron *ensembleP);
 void ajouterPuceron(EnsemblePuceron *ensembleP,Puceron p);
 /* ajoute le puceron passé en paramètre a l'ensemble */
 
-void vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
-/* Le puceron a vécu un tour de plus et gagne un jour de vie */
+int vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
+/* Le puceron a vécu un tour de plus et gagne un jour de vie et meurt si il attend l'age de 10 tours
+    Renvois 1 si le puceron meurt, 0 sinon*/
 
 Puceron* retournePuceron(EnsemblePuceron *ensembleP,int i);
 /*Retourne un pointeur sur le puceron positionnée à l’index i dans le tableau de

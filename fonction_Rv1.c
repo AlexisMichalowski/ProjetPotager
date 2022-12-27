@@ -42,7 +42,7 @@ void affichePotager(char mat[SIZE][SIZE]){
 void initialiserMaturite (int maturite[SIZE][SIZE]){
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-			maturite[i][j]=5;
+			maturite[i][j]=20;
 			}
 		}
 
@@ -81,7 +81,7 @@ void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* ma
 void maturiteTomate(int maturite[SIZE][SIZE]){               
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if (maturite[i][j]<5) {
+            if (maturite[i][j]<20) {
                     maturite[i][j]++;
                 }
             }
@@ -92,9 +92,9 @@ void maturiteTomate(int maturite[SIZE][SIZE]){
 void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if (maturite[i][j] == 0) {
+            if (maturite[i][j] < 5) {
                 potager[i][j]='.';
-            } else if (2<maturite[i][j] && maturite[i][j] <4) {
+            } else if (4<maturite[i][j] && maturite[i][j] <20) {
                 potager[i][j]='o';
                 } else potager[i][j]='O';
             }
@@ -108,7 +108,7 @@ void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
 
 /* fonction PmangeT*/
 void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){    
-    if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] == 5){                           /* le puceron mange la tomate uniquement si elle est mature*/
+    if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] == 20){                           /* le puceron mange la tomate uniquement si elle est mature*/
         maturite[(*puceron).coordP.x][(*puceron).coordP.y] = 0;
         (*puceron).tourSuccessifTomate++ ;           /*on ajoute +1 au nombre de tomates consécutives mangées*/
     }else{

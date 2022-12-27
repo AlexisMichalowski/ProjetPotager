@@ -5,11 +5,14 @@ void ensemblePuceronVide(EnsemblePuceron *ensembleP){
 	}
 
 
-void vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]){
-	(*puceron).ageP ++ ;	
+int vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]){
+	(*puceron).ageP ++ ;
+	int mort = 0;   //booleen qui vaut 0 si le puceron reste en vie, 1 sinon
 	if ((*puceron).ageP >= 10){
 		mortPuceron(ensembleP, *puceron,matricePuceron);
+		mort =1;
 	}
+	return mort;
 }
 
 
@@ -35,8 +38,8 @@ void mortPuceron(EnsemblePuceron *ensembleP,Puceron puceron,Puceron* matricePuce
 	(*ensembleP).tabP[(puceron).index] = (*ensembleP).tabP[(*ensembleP).nombreP - 1] ;  //On remplace le puceron mort par le dernier puceron de l’ensemble
 	((*ensembleP).tabP[(puceron).index]).index = (puceron).index ; 					    //On met à jour l’index du puceron déplacé
 	
-	(*ensembleP).nombreP = (*ensembleP).nombreP -1 ;                                          //On met a jour le nombre de puceron de l'ensemble
-	matricePuceron[puceron.coordP.x][puceron.coordP.y] =NULL;
+	(*ensembleP).nombreP = (*ensembleP).nombreP -1 ;                                    //On met a jour le nombre de puceron de l'ensemble
+	matricePuceron[puceron.coordP.x][puceron.coordP.y] =NULL;							//On enleve le puceron de la matrice de	pucerons				
 }
 
 void initialiserMatricePuceron(Puceron* matricePuceron[SIZE][SIZE]){
@@ -48,25 +51,27 @@ void initialiserMatricePuceron(Puceron* matricePuceron[SIZE][SIZE]){
 }
 
 
-void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensembleP,int Proba){
+void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensembleP,int nbPucerons){
+	int nbPuceronsAjoute=0;
+	int i=0,j=0;
 	Puceron puceron;
 	puceron.ageP =0;    			//les pucerons ont 0 tours d'age a l'initalisation
 	puceron.tourSuccessifTomate=0;  //ils n'ont aussi pas manger de tomates
-	int p=0;
 
-	for(int i=0;i<SIZE;i++){
-		for(int j=0;j<SIZE;j++){
-			p=rand()%101;   //Nombre aléatoire entre 0 et 100
-			if(p<Proba){    
-				puceron.coordP.x=i;
-				puceron.coordP.y=j;
-				puceron.directionP = rand()%8;  //la direction initiale du puceron sera aléatoire et comprise entre 0 et 7, car il y a 8 cases autour du puceron
-				ajouterPuceron(ensembleP,puceron);
+	while(nbPuceronsAjoute < nbPucerons){  //Tant qu'il n'y a pas le nombre de pucerons voulus
+		//On prend une position au hasard dans le potager
+		i=rand()%30;
+		j=rand()%30;
+		//si il n'y a pas de pucerons a la position indiqué on en ajoute un
+		if(matricePuceron[i][j] == NULL){
+			puceron.coordP.x=i;
+			puceron.coordP.y=j;
+			puceron.directionP = rand()%8;  //la direction initiale du puceron sera aléatoire et comprise entre 0 et 7, car il y a 8 cases autour du puceron
+			ajouterPuceron(ensembleP,puceron);
+			nbPuceronsAjoute ++;
 
-				/*Récupère le pointeur sur la puceron qui vient d’être ajouté*/
-				matricePuceron[i][j]= retournePuceron(ensembleP,(*ensembleP).nombreP-1);
-				
-			}
+			/*Récupère le pointeur sur la puceron qui vient d’être ajouté*/
+			matricePuceron[i][j]= retournePuceron(ensembleP,(*ensembleP).nombreP-1);
 		}
 	}
 
@@ -141,7 +146,7 @@ void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
 
 
 
-Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int y){    
+Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int y){    //gestion bords a rajouer! utiliser modulo
 	Coord coordTab[9];
 	Coord coord;
 	coord.x=-1;
@@ -205,7 +210,7 @@ return symbole;
 }
 
 
-void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){
+void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){  //Rajouter gestion bord!
 	int direction =(*puceron).directionP;
 	//On recupere toute les case adjacentes libres (sans pucerons)
 	Coord coordTab[9];
@@ -236,7 +241,7 @@ void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* mat
 	//on choisis une ou il y a une tomate mure parmis celles ou il y a une tomate mure
 		int nbCaseTomates = 0;
 		for(int i=0;i<nbCaseLibre;i++){
-			if(maturite[coordTab[i].x][coordTab[i].y] ==5){
+			if(maturite[coordTab[i].x][coordTab[i].y] ==20){
 				coordTab[nbCaseTomates]=coordTab[i];
 				nbCaseTomates ++;
 			}
@@ -249,7 +254,7 @@ void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* mat
 			x=x - casePointe.x;
 			y=y - casePointe.y;
 		
-
+			//Calcul de la direction en fonction de la position relative de la case par rapport au puceron
 			switch (x){
 			case -1:
 				if (y==-1){
