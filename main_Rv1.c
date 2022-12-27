@@ -57,11 +57,12 @@ while (ensemblePuceron.nombreP >0){    //on simule tant qu'il y a des pucerons
         mort = vieillissementPuceron(&ensemblePuceron,&ensemblePuceron.tabP[i],matricePuceron);
 
         if(mort ==0){  //si le puceron est toujours vivant
-            //orientation
-            //rajouter Condition d'orientation,si la case devant lui ne contient pas de tomates mur, alors on l'oriente!
 
-            orientationPuceron(&ensemblePuceron,&ensemblePuceron.tabP[i],matricePuceron,maturite);
-            //Si le puceron n'as pas manger de tomates, il change de position au hasard
+            //orientation
+            if(1==0){     //si la case devant le puceron ne contient pas de tomates mur, alors on l'oriente!
+                orientationPuceron(&ensemblePuceron,&ensemblePuceron.tabP[i],matricePuceron,maturite);
+            }
+            
 
             //Affichage du puceron dans le potager
             potager[ensemblePuceron.tabP[i].coordP.x][ensemblePuceron.tabP[i].coordP.y]=charDirection(ensemblePuceron.tabP[i].directionP);

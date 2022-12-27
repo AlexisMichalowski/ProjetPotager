@@ -93,4 +93,7 @@ char charDirection(int directon);
 void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
 /* change l'orientation du puecron si il n'y a pas de tomates dans sa direction et si il y a un puceron dans sa direction*/
 
+int bordsSuppr(int x);
+/*Gere les bords supprimés, renvois 0 si x>29 et 29 si x<0*/
+
 #endif

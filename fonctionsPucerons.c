@@ -28,7 +28,7 @@ Puceron* retournePuceron(EnsemblePuceron *ensembleP,int i){
 	Puceron* puceron;
 	puceron =NULL;
 	if (i < (*ensembleP).nombreP){
-		puceron = &((*ensembleP).tabP[i]);   //ERREUR de segmentation case 0, le & semble réspudre l'erreur, a voir par la suite, pas tout capté
+		puceron = &((*ensembleP).tabP[i]);   
 		} 
 	return puceron;
 	}
@@ -89,28 +89,28 @@ void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
 			y=y-1;
 			break;
 		case 1: 
-			y=y-1;
+			x=x-1;
 			break;
 		case 2:
-			x++;
-			y=y-1;
+			y++;
+			x=x-1;
 			break;
 		case 3:
-			x++;
+			y++;
 			break;
 		case 4:
 			x++;
 			y++;
 			break;
 		case 5:
-			y++;
+			x++;
 			break;
 		case 6:
-			x=x-1;
-			y++;
+			y=y-1;
+			x++;
 			break;
 		case 7:
-			x=x-1;
+			y=y-1;
 			break;
 		
 		default:
@@ -120,24 +120,15 @@ void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
 
 	
 	//Verification que la nouvelle position se situe bien dans le potager, BONUS 1, il n'y a pas de bords
-	if(x>29){    //30 case donc derniere case indice a pour indice 29
-		x=0;
-	}else if(x<0){
-		x=29;
-	}
-	
-	if(y>29){
-		y=0;
-	}else if(y<0){
-		y=29;
-	}
+	x=bordsSuppr(x);
+	y=bordsSuppr(y);
 
 	//Les coordonnées du puceron et la matrice sont mis à jour seulement si l'emplacement est libre, sinon le deplacement n'aura pas lieu
 	if(matricePuceron[x][y] ==NULL){   
-	matricePuceron[(*puceron).coordP.x][(*puceron).coordP.y] =NULL;  //Le puceron bouge, son ancienne place devient libre
-	(*puceron).coordP.x =x;
-	(*puceron).coordP.y =y;
-	matricePuceron[x][y] =puceron;
+		matricePuceron[(*puceron).coordP.x][(*puceron).coordP.y] =NULL;  //Le puceron bouge, son ancienne place devient libre
+		(*puceron).coordP.x =x;
+		(*puceron).coordP.y =y;
+		matricePuceron[x][y] =puceron;
 	}
 
 }
@@ -146,7 +137,7 @@ void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
 
 
 
-Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int y){    //gestion bords a rajouer! utiliser modulo
+Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int y){    
 	Coord coordTab[9];
 	Coord coord;
 	coord.x=-1;
@@ -158,9 +149,9 @@ Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int 
 	int j=-1;
 	while(i<2){
 		while(j<2){
-			if(matricePuceron[x+i][y+i]==NULL){
-					coord.x=x+i;
-                    coord.y=y+i;
+			if(matricePuceron[bordsSuppr(x+i)][bordsSuppr(y+i)]==NULL){  //gere les bors supprimés
+					coord.x=bordsSuppr(x+i);
+                    coord.y=bordsSuppr(y+i);
 					coordTab[nbCaseLibre]=coord;
 					nbCaseLibre ++;
                 }	
@@ -179,7 +170,7 @@ Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int 
 
 char charDirection(int directon){
 	char symbole;
-	switch (directon){           //La position du puceron change en fonction de sa position
+	switch (directon){           //La position du puceron change en fonction de sa direction
 		case 0:   
 			symbole='\\';
 			break;
@@ -210,7 +201,7 @@ return symbole;
 }
 
 
-void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){  //Rajouter gestion bord!
+void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){  
 	int direction =(*puceron).directionP;
 	//On recupere toute les case adjacentes libres (sans pucerons)
 	Coord coordTab[9];
@@ -218,16 +209,17 @@ void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* mat
 	coord.x=-1;
 	coord.y=-1;
 
-
+	//les coordonnées ne changeront pas!
 	int x = (*puceron).coordP.x;
 	int y = (*puceron).coordP.y;
 	int nbCaseLibre =0;
 	
 	for(int i=-1;i<2;i++){
 		for(int j=-1;j<2;j++){
-			if(matricePuceron[x+i][y+i]==NULL){
-					coord.x=x+i;
-                    coord.x=y+i;
+			if(matricePuceron[bordsSuppr(x+i)][bordsSuppr(y+i)]==NULL){   //gestion des bords supprimés
+					//On ne prend pas les vrais positions des cases, pour pouvoir calculer la direction plus tard (pas de bordsSuppr ici)
+					coord.x=(x+i);
+                    coord.x=(y+i);
 					coordTab[nbCaseLibre]=coord;
 					nbCaseLibre ++;
                 }	
@@ -241,7 +233,7 @@ void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* mat
 	//on choisis une ou il y a une tomate mure parmis celles ou il y a une tomate mure
 		int nbCaseTomates = 0;
 		for(int i=0;i<nbCaseLibre;i++){
-			if(maturite[coordTab[i].x][coordTab[i].y] ==20){
+			if(maturite[bordsSuppr(coordTab[i].x)][bordsSuppr(coordTab[i].y)] ==20){  //bordsSuppr pour la calcul mais pas pour l'assignation, facilite les calculs ensuites
 				coordTab[nbCaseTomates]=coordTab[i];
 				nbCaseTomates ++;
 			}
@@ -293,7 +285,15 @@ void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* mat
 }
 
 
+int bordsSuppr(int x){
+	if(x>29){    
+		x=0;
+	}else if(x<0){
+		x=29;
+	}
 
+	return x;
+}
 
 
 
