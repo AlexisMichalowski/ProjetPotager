@@ -38,9 +38,9 @@ while (ensemblePuceron.nombreP >0){    //on simule tant qu'il y a des pucerons
     //NIVEAU 1
 
     //mise a jour etat Tomate, toutes les tomates grandissent
-
     maturiteTomate(maturite); 
     apparanceTomate(maturite,potager); //Le potager ne contient que les tomates au debut du tour, les pucerons seront ajouté un par un
+
     i=0;
     while(i<ensemblePuceron.nombreP){    //Pour chaque pucerons present dans l'ensemble au début du tour, les naissants s'activeront a partir du prochain tour
         
@@ -59,8 +59,8 @@ while (ensemblePuceron.nombreP >0){    //on simule tant qu'il y a des pucerons
         if(mort ==0){  //si le puceron est toujours vivant
 
             //orientation
-            if(1==0){     //si la case devant le puceron ne contient pas de tomates mur, alors on l'oriente!
-                orientationPuceron(&ensemblePuceron,&ensemblePuceron.tabP[i],matricePuceron,maturite);
+            if(boolOrientationP(ensemblePuceron.tabP[i],matricePuceron,maturite)==1){     //si la case devant le puceron ,n'est pas libre ou ne contient pas de tomates mur, alors on l'oriente!
+                orientationPuceron(&ensemblePuceron.tabP[i],matricePuceron,maturite);
             }
             
 
@@ -85,9 +85,7 @@ while (ensemblePuceron.nombreP >0){    //on simule tant qu'il y a des pucerons
 
     tour++;
     printf("Etat à la fin du tour n %d \n",tour);
-    affichePotager(potager);
-    
-   
+    affichePotager(potager); 
 
 }
 

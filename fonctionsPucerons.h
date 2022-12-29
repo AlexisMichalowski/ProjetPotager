@@ -90,10 +90,12 @@ Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int 
 char charDirection(int directon);
 /*renvois le charactère associé à une direction, fonctionne pour les pucerons et les coccinnelles*/
 
-void orientationPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
+void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
 /* change l'orientation du puecron si il n'y a pas de tomates dans sa direction et si il y a un puceron dans sa direction*/
 
 int bordsSuppr(int x);
-/*Gere les bords supprimés, renvois 0 si x>29 et 29 si x<0*/
+/*Gere les bords supprimés, renvois 0 si x>(SIZE -1) et (SIZE -1) si x<0*/
 
+int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
+/*renvois 1 si le puceron doit se réorienter (il n'y a pas de tomate mure dans sa direction ou elle n'est pas libre), 0 sinon*/
 #endif

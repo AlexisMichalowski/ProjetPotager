@@ -81,7 +81,7 @@ void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* ma
 void maturiteTomate(int maturite[SIZE][SIZE]){               
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if (maturite[i][j]<20) {
+            if (maturite[i][j]<20){
                     maturite[i][j]++;
                 }
             }
@@ -92,14 +92,16 @@ void maturiteTomate(int maturite[SIZE][SIZE]){
 void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
-            if (maturite[i][j] < 5) {
+            if (maturite[i][j] < 5){
                 potager[i][j]='.';
-            } else if (4<maturite[i][j] && maturite[i][j] <20) {
+            } else if (4<maturite[i][j] && maturite[i][j]<20){
                 potager[i][j]='o';
-                } else potager[i][j]='O';
+            } else {
+                potager[i][j]='O';
             }
         }
     }
+}
 
 
 
