@@ -57,17 +57,17 @@ typedef struct EnsembleCoccinelle
 
 
 void ensemblePuceronVide(EnsemblePuceron *ensembleP);
-/*Modifie l'ensemble pour qu'il soit vide et ne contiennent aucun puceron*/
+/*Modifie l'ensemble pour qu'il soit vide et ne contienne aucun puceron*/
 
 void ajouterPuceron(EnsemblePuceron *ensembleP,Puceron p);
 /* ajoute le puceron passé en paramètre a l'ensemble */
 
 int vieillissementPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
 /* Le puceron a vécu un tour de plus et gagne un jour de vie et meurt si il attend l'age de 10 tours
-    Renvois 1 si le puceron meurt, 0 sinon*/
+    Renvoie 1 si le puceron meurt, 0 sinon*/
 
 Puceron* retournePuceron(EnsemblePuceron *ensembleP,int i);
-/*Retourne un pointeur sur le puceron positionnée à l’index i dans le tableau de
+/*Retourne un pointeur sur le puceron positionné à l’index i dans le tableau de
 EnsemblePuceron. Si l’index en paramètre est plus élevé que le cardinal de l’ensemble, retourne
 le pointeur NULL.*/
 
