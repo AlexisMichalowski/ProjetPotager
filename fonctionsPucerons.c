@@ -83,8 +83,8 @@ void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
 	int y = (*puceron).coordP.y;
 	int direction =(*puceron).directionP;
 
-	//calcul de la futur position
-	switch (direction){           //La position du puceron change en fonction de sa position
+	//calcul de la future position
+	switch (direction){           //La direction du puceron change en fonction de sa position
 		case 0:   
 			x=x-1;            
 			y=y-1;
