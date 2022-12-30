@@ -1,5 +1,5 @@
-# ifndef HEADER_FILE_NAME
-# define HEADER_FILE_NAME
+# ifndef HEADER_FONCTIONSPUCERON
+# define HEADER_FONCTIONSPUCERON
 
 #include <stddef.h>   //utile pour le pointeur NULL
 
@@ -10,7 +10,6 @@
 
 
 #define MAXP 900    //Nombre max de pucerons
-#define MAXC 900    //Nombre max de coccinelle 
 #define SIZE 30     //Largeur du potager
 
 typedef struct Coord
@@ -37,24 +36,6 @@ typedef struct EnsemblePuceron
     Puceron tabP[MAXP];
     } EnsemblePuceron;
 
-//Pour plus tard (Niveau 2)
-
-typedef struct Coccinelle
-    {
-    int ageC;
-    int directionC;
-    int nbPuceronsMange;    //Le nombre de pucerons mangé par la coccinelle, utile pour la reproduction
-    Coord coordC;
-    } Coccinelle;
-
-
-
-typedef struct EnsembleCoccinelle
-    {
-    int nombreP ;
-    Coccinelle tabC[MAXC];
-    } EnsembleCoccinelle;
-
 
 void ensemblePuceronVide(EnsemblePuceron *ensembleP);
 /*Modifie l'ensemble pour qu'il soit vide et ne contienne aucun puceron*/
@@ -75,11 +56,10 @@ void mortPuceron(EnsemblePuceron *ensembleP,Puceron puceron,Puceron* matricePuce
 /*Retire le puceron en paramètre de l’ensemble de puceron en paramètre*/
 
 void initialiserMatricePuceron(Puceron* matricePuceron[SIZE][SIZE]);
-/*Initialiser la mtrice Puceron avec des pointeurs NULL*/
+/*Initialiser la matrice Puceron avec des pointeurs NULL*/
 
-void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensembleP,int Proba);
-/*Remplit la matrice de pucerons de telle manière qu’il y ait Proba% de chances pour chaque case
-de contenir un puceron. Remplit l’ensemble de pucerons en même temps.*/ 
+void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensembleP,int nbPucerons);
+/*Remplit la matrice de pucerons de telle manière qu’il y ait nbPucerons dedans. Remplit l’ensemble de pucerons en même temps.*/ 
 
 void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron);
 /*Un Puceron se deplace si il le peut, d'une case dans sa direction */
@@ -98,4 +78,10 @@ int bordsSuppr(int x);
 
 int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
 /*renvois 1 si le puceron doit se réorienter (il n'y a pas de tomate mure dans sa direction ou elle n'est pas libre), 0 sinon*/
+
+void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]);
+/* Lorsque le puceron est sur la meme case qu'une tomate mature, remet la maturité de la tomate à 0 et compte le nombre de tomates consécutives mangées*/
+
+void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
+/*si le puceron a mangé des tomates pendant 5 tours consécutif, ajoute un puceron adjacent*/
 #endif

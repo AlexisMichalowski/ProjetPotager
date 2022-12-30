@@ -75,7 +75,6 @@ void insertionPuceron(Puceron* matricePuceron[SIZE][SIZE],EnsemblePuceron *ensem
 			matricePuceron[i][j]= retournePuceron(ensembleP,(*ensembleP).nombreP-1);
 		}
 	}
-
 }
 
 void deplacementPuceron(Puceron* matricePuceron[SIZE][SIZE],Puceron *puceron){
@@ -338,7 +337,38 @@ int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int mat
 }
 
 
+void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){    
+    if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] == 20){                           /* le puceron mange la tomate uniquement si elle est mature*/
+        maturite[(*puceron).coordP.x][(*puceron).coordP.y] = 0;
+        (*puceron).tourSuccessifTomate++ ;           /*on ajoute +1 au nombre de tomates consécutives mangées*/
+    }else{
+    (*puceron).tourSuccessifTomate = 0;   /* il n'a pas mangé de tomate ce tour ci, donc compteur retourne a 0*/
+    }        
+}
 
+
+void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]){
+    if ((*puceron).tourSuccessifTomate == 5) {
+        int x=(*puceron).coordP.x;
+        int y=(*puceron).coordP.y;
+       
+
+        Puceron puceron2;
+        puceron2.ageP=0;
+        puceron2.directionP=rand()%8;
+        puceron2.tourSuccessifTomate=0;
+        
+        //gerer les coordonnées du nouveau né
+        puceron2.coordP = caseAdjacenteLibreAleatoire(matricePuceron,x,y);
+           
+        if(puceron2.coordP.x != -1){    //Si il y a une case adjacente vide, sinon pas de naissance
+            ajouterPuceron(ensembleP,puceron2);  //l'index du puceron est gérer dans cette fonction
+            /*Récupère le pointeur sur la puceron qui vient d’être ajouté*/
+            matricePuceron[x][y]= retournePuceron(ensembleP,(*ensembleP).nombreP-1); 
+        }
+        (*puceron).tourSuccessifTomate = 0; //on reinitialise le compteur si le puceron s'est reproduit
+    }
+}
 
 
 

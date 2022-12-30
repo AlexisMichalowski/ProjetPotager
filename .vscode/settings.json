@@ -2,5 +2,6 @@
     "files.associations": {
         "fonctionspucerons.h": "c",
         "stddef.h": "c"
-    }
+    },
+    "C_Cpp.dimInactiveRegions": false
 }
