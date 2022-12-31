@@ -9,9 +9,9 @@
 typedef struct Coccinelle
     {
     int ageC;           //Age de la coccinelle
-    int directionC;
+    int directionC;     //Direction de la coccinelle
     int nbPuceronsMange;    //Le nombre de pucerons mangé par la coccinelle, utile pour la reproduction
-    Coord coordC;
+    Coord coordC;              //position de la coccinelle dans le potager 
     int index; //position de la coccinelle dans le tableau de EnsembleCoccinelle
     } Coccinelle;
 
@@ -60,6 +60,7 @@ void reproductionCoccinelle(EnsembleCoccinelle *ensembleC,Coccinelle *coccinelle
 
 Coord caseAdjacenteLibreAleatoireCoccinelle(Coccinelle* matriceCoccinelle[SIZE][SIZE],int x,int y);
 /*Renvois une case adjacente sans Coccinelle aléatoire*/
+
 //Orientation
 
 
