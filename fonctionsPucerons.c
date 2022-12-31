@@ -164,39 +164,6 @@ Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int 
 }
 
 
-char charDirection(int directon){
-	char symbole;
-	switch (directon){           //La position du puceron change en fonction de sa direction
-		case 0:   
-			symbole='\\';
-			break;
-		case 1: 
-			symbole='^';
-			break;
-		case 2:
-			symbole='/';
-			break;
-		case 3:
-			symbole='>';
-			break;
-		case 4:
-			symbole='\\';
-			break;
-		case 5:
-			symbole='v';
-			break;
-		case 6:
-			symbole='/';
-			break;
-		case 7:
-			symbole='<';
-			break;
-
-	}
-return symbole;
-}
-
-
 void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){  
 	int direction =(*puceron).directionP;
 	//On recupere toute les case adjacentes libres (sans pucerons)
@@ -277,15 +244,6 @@ void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int
 (*puceron).directionP = direction;
 }
 
-int bordsSuppr(int x){
-	if(x>(SIZE -1)){    
-		x=0;
-	}else if(x<0){
-		x=(SIZE -1);
-	}
-
-	return x;
-}
 
 int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]){
 	int orientation =0;

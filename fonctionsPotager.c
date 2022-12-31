@@ -1,20 +1,4 @@
-#include "fonctionsPucerons.h"
-#include "fonctionsCoccinelles.h"
-
-void initialiserPotager();
-/* Crée un Potager Initialisé, avec des tomates Grosses à Chaque Cases*/
-
-void affichePotager(char mat[SIZE][SIZE]);
-/*Affiche une Matrice de char de taille SIZExSIZE*/
-
-void maturiteTomate(int maturite[SIZE][SIZE]);
-/* Ajoute 1 tour de maturité a chaque tomate*/
-
-void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]);
-/* Change l'apparence de la tomate selon sa maturité*/
-
-void initialiserMaturite (int maturite[SIZE][SIZE]);
-/*initialise le tableau de maturité des tomates à 5*/
+#include "fonctionsPotager.h"
 
 void initialiserPotager(char potager[SIZE][SIZE]){
 	for (int i=0;i<SIZE;i++){
@@ -69,36 +53,45 @@ void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
     }
 }
 
+int bordsSuppr(int x){
+	if(x>(SIZE -1)){    
+		x=0;
+	}else if(x<0){
+		x=(SIZE -1);
+	}
+
+	return x;
+}
 
 
-/* initialise les coccinelles*/
-/* fonction deplacementC */
-/* reproC */
-/*mortC */
-/* fonction CmangeP*/
+char charDirection(int directon){
+	char symbole;
+	switch (directon){           //La position du puceron change en fonction de sa direction
+		case 0:   
+			symbole='\\';
+			break;
+		case 1: 
+			symbole='^';
+			break;
+		case 2:
+			symbole='/';
+			break;
+		case 3:
+			symbole='>';
+			break;
+		case 4:
+			symbole='\\';
+			break;
+		case 5:
+			symbole='v';
+			break;
+		case 6:
+			symbole='/';
+			break;
+		case 7:
+			symbole='<';
+			break;
 
-
-/*orientationC*/
-
-
-/* ORDRE DU TOUR
-MAJ maturité tomates
-
-
-déplacement puceron
-déplacement coccinelle
-CmangeP
-PmangeT
-reproP
-mortP
-orientationP
-reproC
-mortC
-orientationC
-
-FIN DU TOUR
-*/
-
-
-
-
+	}
+return symbole;
+}

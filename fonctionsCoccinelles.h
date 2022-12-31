@@ -1,7 +1,9 @@
 # ifndef HEADER_FONCTIONSCOCCINELLES
 # define HEADER_FONCTIONSCOCCINELLES
 
+#include "fonctionsPotager.h"
 #include "fonctionsPucerons.h"
+
 
 #define MAXC 900    //Nombre max de coccinelle 
 
@@ -63,7 +65,5 @@ Coord caseAdjacenteLibreAleatoireCoccinelle(Coccinelle* matriceCoccinelle[SIZE][
 
 //Orientation
 
-
-//Coccinelle bloque Puceron?? Si oui changer bcp de choses
 
 #endif
