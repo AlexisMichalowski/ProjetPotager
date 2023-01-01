@@ -38,5 +38,9 @@ int bordsSuppr(int x);
 char charDirection(int directon);
 /*renvois le charactère associé à une direction, fonctionne pour les pucerons et les coccinnelles*/
 
+void red();
+void green();
+void black();
+/*met la couleur respectivement sur rouge,vert et noir*/
 
 #endif

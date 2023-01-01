@@ -191,3 +191,74 @@ Coord caseAdjacenteLibreAleatoireCoccinelle(Coccinelle* matriceCoccinelle[SIZE][
 
 	return coord;
 }
+
+void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][SIZE]){
+	int direction= (*coccinelle).directionC;
+	int x = (*coccinelle).coordC.x;
+	int y = (*coccinelle).coordC.y;
+	Coord cible;
+	cible.x=5+x;
+	cible.y=5+y;
+
+
+	int rayon =3;
+	int distance =0;
+	//on parcourt toutes les cases dans un rayon de 3 blocs de la coccinelle
+	for(int i=-3;i<4;i++){
+		for(int j=-3;j<4;j++){
+			if((matricePuceron[bordsSuppr(x+i)][bordsSuppr(y+j)] != NULL) && ((x!=x+i)||(y!=y+j))){ 
+			/*si il y a un puceron dans une des cases a un rayon de 3 blocs, gestion des bords supprimés + on ne regarde pas la case ou se situe la coccinnelle*/
+				distance= (abs(i)+abs(j)/2)+1/2;   //comme la distance est un int, vas prendre la valeur entière seulement, permettant d'avoir la valeur correspondant à l'écart entre les 2 cases
+
+				if(rayon >= distance){
+					rayon = distance;
+					cible.x=x+i;
+					cible.y=y+j;
+				}
+			}
+		}
+	}
+
+	x=cible.x -x;
+	y=cible.y-y;
+	//Calcul de la direction en fonction de la position du puceron cible
+	if(x==5){
+		direction =rand()%8;  //Si x est toujours ==5, il n'y a pas de puceron dans un rayon de 3 case, donc la coccinelle s'oriente au hasard
+	}else if((x<=-2 && y<=-2) || ((x == -1 ) && (y == -1))){
+		direction = 0;
+	}else if((x>=2 && y<=-2) || ((x == 1 ) && (y == -1))){
+		direction =2;
+	}else if((x>=2 && y>=2) || ((x == 1 ) && (y == 1))){
+		direction = 4;
+	}else if((x<=-2 && y>=2) || ((x == -1 ) && (y == 1))){
+		direction = 6;
+	}else if((y<=-2) || ((x == 0 ) && (y == -1))){
+		direction = 1;
+	}else if((x>=2) || ((x == 1 ) && (y == 0))){
+		direction = 3;
+	}else if((y>=2) || ((x == 0 ) && (y == 1))){
+		direction =5;
+	}else{
+		direction =7;
+	}
+
+//On met a jour la direction
+(*coccinelle).directionC = direction;
+
+}
+
+void affichePotagerCouleur(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]){
+	for(int i=0;i<SIZE;i++){
+		for(int j=0;j<SIZE;j++){
+			if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle on met du rouge
+				red();
+			}else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron du vert
+				green();
+			}
+			printf("%c ",potager[i][j]);   //on affiche le charactère
+			black();                      //on remet la couleur si noir
+			}
+			printf("\n");
+		}
+
+	}

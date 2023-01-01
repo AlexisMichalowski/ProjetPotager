@@ -40,9 +40,9 @@ int main(){
     //on peut pas mettre dans le if sinon suppression en sortant du if 
     EnsembleCoccinelle ensembleCoccinelle;
     Coccinelle* matriceCoccinelle[SIZE][SIZE];
-    if(niveau==2){ //On initialise les coccinelles ssi niveau 2
-        ensembleCoccinelleVide(&ensembleCoccinelle);
-        initialiserMatriceCoccinelle(matriceCoccinelle);
+    ensembleCoccinelleVide(&ensembleCoccinelle);
+    initialiserMatriceCoccinelle(matriceCoccinelle);
+    if(niveau==2){ //On insere les coccinelles ssi niveau 2
         insertionCoccinelle(matriceCoccinelle,&ensembleCoccinelle,10); //on insere 10 coccinelles
     }
 
@@ -109,7 +109,7 @@ int main(){
 
                 if(mort ==0){//si la coccinelle n'est pas morte
                     //Orientation
-
+                    orientationCoccinelle(&ensembleCoccinelle.tabC[i],matricePuceron);
                     //Affichage
                     potager[ensembleCoccinelle.tabC[i].coordC.x][ensembleCoccinelle.tabC[i].coordC.y]=charDirection(ensembleCoccinelle.tabC[i].directionC);
                     i++;
@@ -120,7 +120,8 @@ int main(){
         //Affichage et fin du tour
         tour++;
         printf("Etat à la fin du tour n %d \n",tour);
-        affichePotager(potager); 
+        //affichePotager(potager); 
+        affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
     }
 
     return 0;

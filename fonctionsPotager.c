@@ -1,5 +1,6 @@
 #include "fonctionsPotager.h"
 
+
 void initialiserPotager(char potager[SIZE][SIZE]){
 	for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
@@ -27,7 +28,7 @@ void initialiserMaturite (int maturite[SIZE][SIZE]){
 
 }
 
-/* fonction qui ajoute 1 tour de maturité a chaque tomate*/
+
 void maturiteTomate(int maturite[SIZE][SIZE]){               
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
@@ -38,7 +39,7 @@ void maturiteTomate(int maturite[SIZE][SIZE]){
         }
     }
 
-/* fonction qui change l'apparence de la tomate selon sa maturité*/   
+   
 void apparanceTomate(int maturite[SIZE][SIZE],char potager[SIZE][SIZE]) {
     for (int i=0;i<SIZE;i++){
 		for (int j=0;j<SIZE;j++){
@@ -95,3 +96,18 @@ char charDirection(int directon){
 	}
 return symbole;
 }
+
+
+void red () {
+  printf("\033[1;31m");
+}
+
+void green () {
+  printf("\033[0;32m");
+}
+
+void black () {
+  printf("\033[0m");
+}
+
+

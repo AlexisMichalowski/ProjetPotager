@@ -63,7 +63,10 @@ void reproductionCoccinelle(EnsembleCoccinelle *ensembleC,Coccinelle *coccinelle
 Coord caseAdjacenteLibreAleatoireCoccinelle(Coccinelle* matriceCoccinelle[SIZE][SIZE],int x,int y);
 /*Renvois une case adjacente sans Coccinelle aléatoire*/
 
-//Orientation
+void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][SIZE]);
+/*Change la direction de la coccinelle pour l'orienter vers un puceron dans un rayon de 3 cases*/
 
+void affichePotagerCouleur(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]);
+/*Affiche le Potager avec les bonnes couleurs*/
 
 #endif

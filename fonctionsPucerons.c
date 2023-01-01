@@ -184,17 +184,17 @@ void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int
                     coord.y=(y+j);
 					coordTab[nbCaseLibre]=coord;
 					nbCaseLibre ++;
-                }	
+            }	
 		}
 	}
 
 	
 	if(nbCaseLibre ==0){ //Si il n'y a pas de case adjacente libre sans puceron, on prend une direction au hasard
 		direction = rand()%8;
-	}else{				//on choisis une ou il y a une tomate mure parmis les cases libres contenant une tomate mure
+	}else{				//on choisis une ou il y a une tomate parmis les cases libres contenant une tomate
 		int nbCaseTomates = 0;
 		for(int i=0;i<nbCaseLibre;i++){
-			if(maturite[bordsSuppr(coordTab[i].x)][bordsSuppr(coordTab[i].y)] ==20){  //bordsSuppr pour la calcul mais pas pour l'assignation, facilite les calculs ensuites
+			if(maturite[bordsSuppr(coordTab[i].x)][bordsSuppr(coordTab[i].y)] >4){  //bordsSuppr pour la calcul mais pas pour l'assignation, facilite les calculs ensuites
 				coordTab[nbCaseTomates]=coordTab[i];
 				nbCaseTomates ++;
 			}
@@ -210,8 +210,8 @@ void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int
 			casePointe = coordTab[rand()%nbCaseTomates];
 		}
 			//Calcul de la direction en fonction de la position relative de la case vers laquelle le puceron s'oriente
-		x=x - casePointe.x;
-		y=y - casePointe.y;
+		x=casePointe.x - x;
+		y=casePointe.y - y;
 		switch (x){
 		case -1:
 			if (y==-1){
@@ -286,7 +286,7 @@ int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int mat
 	x=bordsSuppr(x);
 	y=bordsSuppr(y);
 
-	if((maturite[x][y]!=20)||(matricePuceron[x][y]!=NULL)){   //Si il n'y a pas de tomate mure dans sa direction ou la case n'est pas libre
+	if((maturite[x][y]<5)||(matricePuceron[x][y]!=NULL)){   //Si il n'y a pas de tomate mangeables dans sa direction ou la case n'est pas libre
 		orientation =1;										 //Il faut le réorienter
 	}
 
@@ -296,7 +296,7 @@ int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int mat
 
 
 void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){    
-    if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] == 20){                           /* le puceron mange la tomate uniquement si elle est mature*/
+    if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] >4){                           /* le puceron mange la tomate uniquement si elle existe, changement v2*/
         maturite[(*puceron).coordP.x][(*puceron).coordP.y] = 0;
         (*puceron).tourSuccessifTomate++ ;           /*on ajoute +1 au nombre de tomates consécutives mangées*/
     }else{

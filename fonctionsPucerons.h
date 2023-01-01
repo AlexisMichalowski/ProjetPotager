@@ -5,10 +5,12 @@
 
 #include <stddef.h>   //utile pour le pointeur NULL
 
+/*
 #include <time.h>     //pour les nombres aléatoires
 #include <stdlib.h>
 
 #include <stdio.h>
+*/
 
 
 #define MAXP 900    //Nombre max de pucerons
@@ -62,7 +64,7 @@ Coord caseAdjacenteLibreAleatoire(Puceron* matricePuceron[SIZE][SIZE],int x,int 
 /*renvois les coordonnées au hasard d'une case adjacente libre, si une telle case n'existe pas renvois (-1,-1)*/
 
 void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
-/* change l'orientation du puecron si il n'y a pas de tomates dans sa direction et si il y a un puceron dans sa direction*/
+/* change l'orientation du puecron vers une case libre avec tomate mure si possible*/
 
 int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
 /*renvois 1 si le puceron doit se réorienter (il n'y a pas de tomate mure dans sa direction ou elle n'est pas libre), 0 sinon*/
