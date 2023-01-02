@@ -122,3 +122,21 @@ if(NULL == texture)
     fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
     goto Quit;
 }
+
+
+
+
+
+/*EVENEMENTS*/
+
+
+void SDL_PumpEvents(void)    /*ajoute les evenements dans une file*/
+
+SDL_WINDOWEVENT(window)            /*gère un evenement sur notre fenetre*/
+
+SDL_SYSWMEVENT(syswm)            /*gère un evenement sur l'état de la fenetre*/
+
+
+int SDL_WaitEvent(SDL_Event* event)  /*fonction bloquante ; attend un evenement avant de faire autre chose*/
+
+int SDL_PollEvent(SDL_Event* event) /*pareil mais ne bloque pas*/
