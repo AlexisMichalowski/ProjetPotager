@@ -256,7 +256,7 @@ void affichePotagerCouleur(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE
 				green();
 			}
 			printf("%c ",potager[i][j]);   //on affiche le charactère
-			black();                      //on remet la couleur si noir
+			black();                      //on remet la couleur en noir
 			}
 			printf("\n");
 		}

@@ -50,14 +50,14 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
     for(int i=0;i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
             //Gradient de rouge pour la tomate
-            rect.x = i*30 +2;
-            rect.y = j*30 +2;
+            rect.y = i*30 +2;
+            rect.x = j*30 +2;
             SDL_SetRenderDrawColor(renderer, 255, 255-(10*(maturite[i][j])+55), 255-(10*(maturite[i][j])+55), 255);
 			SDL_RenderFillRect(renderer,&rect); 
 
 
-			if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle on affiche une coccinnelle
-				direction=(*matriceCoccinelle[i][j]).directionC;
+			if(matriceCoccinelle[j][i]!=NULL){ //si c'est une coccinelle on affiche une coccinnelle
+				direction=(*matriceCoccinelle[j][i]).directionC;
                 //Afficher Coccinelle correspondant a direction C à la pos (i*30,j*30)
             	switch (direction){           //La position du puceron change en fonction de sa direction
 		            case 0:   
@@ -85,8 +85,8 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
 			            placeImage(renderer,"./imagesProjet/c7.bmp",i*30,j*30);
 			            break;   
                     }
-			}else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron du vert
-                direction=(*matricePuceron[i][j]).directionP;
+			}else if(matricePuceron[j][i]!=NULL){ //si c'est un puceron du vert
+                direction=(*matricePuceron[j][i]).directionP;
                 //Afficher puceron correspondant a directionP à la pos (i*30,j*30)
                 switch (direction){           //La position du puceron change en fonction de sa direction
 		            case 0:   
@@ -122,6 +122,7 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
 
 }
 //Main a virer apres mais bcp de trucs devront être déplacer dans le main.c
+/*
 int main(){
 	//Initialisation
     SDL_Window *window = NULL;
@@ -174,3 +175,4 @@ Quit:
     quitteSDL(window,renderer);
     return statut;
 }
+*/

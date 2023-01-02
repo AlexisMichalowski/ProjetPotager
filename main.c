@@ -1,6 +1,7 @@
 #include "fonctionsPotager.h"
 #include "fonctionsPucerons.h"
 #include "fonctionsCoccinelles.h"
+#include "interfaceGraphique.h"
 
 int main(){
 
@@ -15,43 +16,95 @@ int main(){
         printf("Veuillez saisir un nombre entre 1 et 2: \n");
         scanf("%d",&niveau);
     }
+    //Choix de l'affichage
+    printf("Quel affichage souhaitez-vous?\n 1)Console \n 2)Graphique\n");
+    int affichage =0;
+    scanf("%d",&affichage);
+    while (!(affichage == 1 || affichage ==2)){
+        printf("Veuillez saisir un nombre entre 1 et 2: \n");
+        scanf("%d",&affichage);
+    }
+    //Si affichage graphique souhaité, initialisation et création de la fenetre
+    SDL_Window *window = NULL; //on doit declaré en dehors du if sinon variable interne au if
+    SDL_Renderer *renderer = NULL;
+    int statut = EXIT_FAILURE;
+    if(affichage ==2){
+        if(0 != SDL_Init(SDL_INIT_VIDEO)){
+            fprintf(stderr, "Erreur SDL_Init : %s", SDL_GetError());
+            goto Quit;
+        }
     
+        //creation fenetre
+        window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,   //fenetre carrée pour potager
+                                    900,900, SDL_WINDOW_SHOWN);
+        //gestion erreur creation
+        if(NULL == window){
+            fprintf(stderr, "Erreur SDL_CreateWindow : %s", SDL_GetError());
+            goto Quit;
+        }   
+        //Creation renderer
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        //erreur renderer
+        if(NULL == renderer){
+            fprintf(stderr, "Erreur SDL_CreateRenderer : %s", SDL_GetError());
+            goto Quit;
+        }
+        //remplissage
+        if(0 != SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255)){ //set la couleur sur noir
+            fprintf(stderr, "Erreur SDL_SetRenderDrawColor : %s", SDL_GetError());
+            goto Quit;
+        }
+    
+        if(0 != SDL_RenderClear(renderer)){
+            //colorie le renderer avec la couleur courante
+            fprintf(stderr, "Erreur SDL_SetRenderDrawColor : %s", SDL_GetError());
+            goto Quit;
+        }
+    }
+
+
+
+
     //Initialisation potager et tomates
     char potager[SIZE][SIZE];
     int maturite[SIZE][SIZE];
     initialiserMaturite(maturite);
     apparanceTomate(maturite,potager);
 
+    //Initialisation des ensembles
+    //Pucerons
+    EnsemblePuceron ensemblePuceron;       
+    Puceron* matricePuceron[SIZE][SIZE]; //Contient des pointeurs sur les pucerons  
+    ensemblePuceronVide(&ensemblePuceron);         
+    initialiserMatricePuceron(matricePuceron);
+    //Coccinelles
+    EnsembleCoccinelle ensembleCoccinelle;
+    Coccinelle* matriceCoccinelle[SIZE][SIZE];  //contient des pointeurs sur les coccinelles
+    ensembleCoccinelleVide(&ensembleCoccinelle);
+    initialiserMatriceCoccinelle(matriceCoccinelle);
+
     //Affichage du potager avant introduction des pucerons
     printf("Etat Initial \n");
-    affichePotager(potager);
-
-
-    //creation de l'ensemble de pucerons vide se fait pour le niveau 1 et 2
-    EnsemblePuceron ensemblePuceron;
-    ensemblePuceronVide(&ensemblePuceron);
-
-    Puceron* matricePuceron[SIZE][SIZE];        //Contient des pointeurs sur les pucerons  
-    initialiserMatricePuceron(matricePuceron);
+    if(affichage ==1){
+        affichePotager(potager);
+    }else{
+        damier(renderer);    //Initialisation de la fenêtre
+        affichePotagerGraphique(renderer,maturite,matricePuceron,matriceCoccinelle);
+        SDL_RenderPresent(renderer);//MaJ de l'écran
+        SDL_Delay(2000); //attente de 2 sec
+    }
 
     //Insertion des pucerons
     insertionPuceron(matricePuceron,&ensemblePuceron,20);      //on insere 20 pucerons
-
-    //on peut pas mettre dans le if sinon suppression en sortant du if 
-    EnsembleCoccinelle ensembleCoccinelle;
-    Coccinelle* matriceCoccinelle[SIZE][SIZE];
-    ensembleCoccinelleVide(&ensembleCoccinelle);
-    initialiserMatriceCoccinelle(matriceCoccinelle);
+    //Insertions Coccinelles
     if(niveau==2){ //On insere les coccinelles ssi niveau 2
         insertionCoccinelle(matriceCoccinelle,&ensembleCoccinelle,10); //on insere 10 coccinelles
     }
 
     //Declaration des variables utiles
-
     int tour=0; //comptabilise le nombre de tours
-
-    int i =0; //compteur pour se deplacer dans le tableau de pucerons
-    int mort =0; //Permettra de savoir si un puceron va mourir ou non, fonctionne comme un booléen, 0 si puceron vivant, 1 sinon
+    int i =0; //compteur pour se deplacer dans les tableaux d'ensembles
+    int mort =0; //Permettra de stocker la mort ou non des individus(pucerons et coccinelles), fonctionne comme un booléen, 0 si vivant, 1 sinon
 
     while (ensemblePuceron.nombreP >0 ){    //on simule tant qu'il y a des pucerons    
         //NIVEAU 1
@@ -119,10 +172,24 @@ int main(){
         }
         //Affichage et fin du tour
         tour++;
-        printf("Etat à la fin du tour n %d \n",tour);
-        //affichePotager(potager); 
-        affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
+        if(affichage ==1){
+            printf("Etat à la fin du tour n %d \n",tour);
+            //affichePotager(potager); 
+            affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
+        }else{
+            printf("Etat à la fin du tour n %d \n",tour);
+            //affichePotager(potager); 
+            affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
+
+            damier(renderer);    //Support du potager
+            affichePotagerGraphique(renderer,maturite,matricePuceron,matriceCoccinelle);
+            SDL_RenderPresent(renderer);//MaJ de l'écran
+            SDL_Delay(10000); //attente de 2 sec
+        }
     }
 
-    return 0;
+    statut = EXIT_SUCCESS;
+    Quit:
+    quitteSDL(window,renderer);
+    return statut;
 }
