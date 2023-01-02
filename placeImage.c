@@ -33,7 +33,7 @@ void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {
   SDL_Rect destination;
   destination.x = x;
   destination.y = y;
-  destination.w = 30.0f;  /*si c'est un float, sinon on met juste 30*/
-  destination.h = 30.0f;
+  destination.w = 30;
+  destination.h = 30;
   SDL_RenderCopy(renderer, texture, NULL, &destination);
 }
