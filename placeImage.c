@@ -9,10 +9,10 @@ void analysePotager(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE]
      for (int j=0;j<SIZE;j++){
        if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle
 	  if (matriceCoccinelle[i][j]->directionC = 0) {
-              placeImage(renderer,"path/to/image/coccinelle/direction0",i*30,j*30)
+              placeImage(renderer,"path/to/image/coccinelle/direction0",i*30,j*30);
           }   /* continuer pour les directions*/
 	else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron
-	 placeImage(renderer,"path/to/image/puceron",i*30,j*30)
+	 placeImage(renderer,"path/to/image/puceron",i*30,j*30);
        }           /*equivalent pour tomate*/
      }
   }
