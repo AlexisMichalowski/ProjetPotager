@@ -1,6 +1,6 @@
 #include "SDL2/SDL_image.h"
 
-void analysePotager(char potager[SIZE][SIZE]); 
+void analysePotager(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE],SDL_Renderer* renderer); 
 void placeImage(SDL_Renderer* renderer,char* path,int x,int y);
 
 
