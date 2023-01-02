@@ -9,7 +9,7 @@ int main(){
     srand(time(NULL));  //seed pour les nombres aléatoires
 
     //Choix du niveau (1 ou 2)
-    printf("Quel niveau voulez-vous Simulez? \n Saississez un nombre entre 1 et 2:\n");
+    printf("Quel niveau voulez-vous simuler? \n Saississez un nombre entre 1 et 2:\n");
     int niveau=0;
     scanf("%d",&niveau);
     while (!(niveau == 1 || niveau ==2)){
@@ -84,8 +84,9 @@ int main(){
     initialiserMatriceCoccinelle(matriceCoccinelle);
 
     //Affichage du potager avant introduction des pucerons
-    printf("Etat Initial \n");
+    
     if(affichage ==1){
+        printf("Etat Initial \n");
         affichePotager(potager);
     }else{
         damier(renderer);    //Initialisation de la fenêtre
@@ -177,14 +178,11 @@ int main(){
             //affichePotager(potager); 
             affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
         }else{
-            printf("Etat à la fin du tour n %d \n",tour);
-            //affichePotager(potager); 
-            affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
-
             damier(renderer);    //Support du potager
-            affichePotagerGraphique(renderer,maturite,matricePuceron,matriceCoccinelle);
+            affichePotagerGraphiqueTomates(renderer,maturite,matricePuceron,matriceCoccinelle);
+            affichePotagerGraphiqueEntites(renderer,maturite,matricePuceron,matriceCoccinelle);
             SDL_RenderPresent(renderer);//MaJ de l'écran
-            SDL_Delay(10000); //attente de 2 sec
+            SDL_Delay(2000); //attente de 2 sec
         }
     }
 

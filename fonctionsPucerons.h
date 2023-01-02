@@ -3,16 +3,6 @@
 
 #include "fonctionsPotager.h"
 
-#include <stddef.h>   //utile pour le pointeur NULL
-
-/*
-#include <time.h>     //pour les nombres aléatoires
-#include <stdlib.h>
-
-#include <stdio.h>
-*/
-
-
 #define MAXP 900    //Nombre max de pucerons
 
 typedef struct Puceron

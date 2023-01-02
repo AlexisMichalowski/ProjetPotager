@@ -18,4 +18,8 @@ void placeImage(SDL_Renderer* renderer, char* path,int x,int y);
 
 void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]);
 /*Affiche le potager dans le renderer avec les bonnes images a chaque case et les tomates avec un gradient de rouge*/
+
+void affichePotagerGraphiqueTomates(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]);
+
+void affichePotagerGraphiqueEntites(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]);
 #endif
