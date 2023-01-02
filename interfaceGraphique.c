@@ -47,8 +47,6 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
     SDL_Rect rect;
     rect.w = 25;
     rect.h = 25;
-    char* image;
-
     for(int i=0;i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
             //Gradient de rouge pour la tomate
@@ -63,45 +61,68 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
                 //Afficher Coccinelle correspondant a direction C à la pos (i*30,j*30)
             	switch (direction){           //La position du puceron change en fonction de sa direction
 		            case 0:   
-			            image="../p0.bmp";
+			            placeImage(renderer,"./imagesProjet/c0.bmp",i*30,j*30);
 			            break;
 		            case 1: 
-			            image="../p1.bmp";
+			            placeImage(renderer,"./imagesProjet/c1.bmp",i*30,j*30);
 			            break;
 		            case 2:
-			            symbole='/';
+			            placeImage(renderer,"./imagesProjet/c2.bmp",i*30,j*30);
 			            break;
 		            case 3:
-			            symbole='>';
+			            placeImage(renderer,"./imagesProjet/c3.bmp",i*30,j*30);
 			            break;
 		            case 4:
-		        	    symbole='\\';
+		        	    placeImage(renderer,"./imagesProjet/c4.bmp",i*30,j*30);
 		        	    break;
 	                case 5:
-		        	    symbole='v';
+		        	    placeImage(renderer,"./imagesProjet/c5.bmp",i*30,j*30);
 			            break;
 		            case 6:
-			            symbole='/';
+			            placeImage(renderer,"./imagesProjet/c6.bmp",i*30,j*30);
 			            break;
 		            case 7:
-			            symbole='<';
+			            placeImage(renderer,"./imagesProjet/c7.bmp",i*30,j*30);
 			            break;   
-                placeImage(renderer,"../MiniInfo1/ProjetPotager/p7.bmp",i*30,j*30); 
-
+                    }
 			}else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron du vert
                 direction=(*matricePuceron[i][j]).directionP;
                 //Afficher puceron correspondant a directionP à la pos (i*30,j*30)
-				
+                switch (direction){           //La position du puceron change en fonction de sa direction
+		            case 0:   
+			            placeImage(renderer,"./imagesProjet/p0.bmp",i*30,j*30);
+			            break;
+		            case 1: 
+			            placeImage(renderer,"./imagesProjet/p1.bmp",i*30,j*30);
+			            break;
+		            case 2:
+			            placeImage(renderer,"./imagesProjet/p2.bmp",i*30,j*30);
+			            break;
+		            case 3:
+			            placeImage(renderer,"./imagesProjet/p3.bmp",i*30,j*30);
+			            break;
+		            case 4:
+		        	    placeImage(renderer,"./imagesProjet/p4.bmp",i*30,j*30);
+		        	    break;
+	                case 5:
+		        	    placeImage(renderer,"./imagesProjet/p5.bmp",i*30,j*30);
+			            break;
+		            case 6:
+			            placeImage(renderer,"./imagesProjet/p6.bmp",i*30,j*30);
+			            break;
+		            case 7:
+			            placeImage(renderer,"./imagesProjet/p7.bmp",i*30,j*30);
+			            break;
+                }
 			}
                         
 
-			}
 		}
+	}
 
 }
 //Main a virer apres mais bcp de trucs devront être déplacer dans le main.c
-int main()
-{
+int main(){
 	//Initialisation
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
