@@ -8,7 +8,7 @@ void analysePotager(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE]
   for (int i=0;i<SIZE;i++){
      for (int j=0;j<SIZE;j++){
        if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle
-	  if (matriceCoccinelle[i][j]->direction = 0) {
+	  if (matriceCoccinelle[i][j]->directionC = 0) {
               placeImage(renderer,"path/to/image/coccinelle/direction0",i*30,j*30)
           }   /* continuer pour les directions*/
 	else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron
