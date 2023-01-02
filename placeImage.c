@@ -21,7 +21,7 @@ void analysePotager(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE]
 void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {   
   SDL_Surface *tmp = NULL;
   SDL_Texture *texture = NULL;
-  tmp = IMG_Load("nom_de_l_image");
+  tmp = IMG_Load(path);
   if(NULL == tmp){
     fprintf(stderr, "Erreur SDL_LoadBMP : %s", SDL_GetError());
    }
