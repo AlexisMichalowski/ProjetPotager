@@ -21,22 +21,20 @@ void analysePotager(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE]
 
 void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {    
   tmp = IMG_Load("nom_de_l_image");
-  if(NULL == tmp)
-   {
+  if(NULL == tmp){
     fprintf(stderr, "Erreur SDL_LoadBMP : %s", SDL_GetError());
     goto Quit;
    }
-texture = SDL_CreateTextureFromSurface(renderer, tmp);
-SDL_FreeSurface(tmp); /* On libère la surface, on n’en a plus besoin */
-if(NULL == texture)
-{
+  texture = SDL_CreateTextureFromSurface(renderer, tmp);
+  SDL_FreeSurface(tmp); /* On libère la surface, on n’en a plus besoin */
+  if(NULL == texture){
     fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
     goto Quit;
-}
-SDL_Rect destination;
-destination.x = x;
-destination.y = y;
-destination.w = 30;
-destination.h = 30;
-SDL_RenderCopy(renderer, texture, NULL, &destination);
+  }
+  SDL_Rect destination;
+  destination.x = x;
+  destination.y = y;
+  destination.w = 30;
+  destination.h = 30;
+  SDL_RenderCopy(renderer, texture, NULL, &destination);
 }
