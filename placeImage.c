@@ -25,7 +25,7 @@ void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {
    {
     fprintf(stderr, "Erreur SDL_LoadBMP : %s", SDL_GetError());
     goto Quit;
-}
+   }
 texture = SDL_CreateTextureFromSurface(renderer, tmp);
 SDL_FreeSurface(tmp); /* On libère la surface, on n’en a plus besoin */
 if(NULL == texture)
@@ -34,9 +34,9 @@ if(NULL == texture)
     goto Quit;
 }
 SDL_Rect destination;
-destination.x = xPos;
-destination.y = yPos;
-destination.w = yourImageWidth;
-destination.h = yourImageHeight;
+destination.x = x;
+destination.y = y;
+destination.w = 30;
+destination.h = 30;
 SDL_RenderCopy(renderer, texture, NULL, &destination);
 }
