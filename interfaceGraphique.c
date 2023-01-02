@@ -22,6 +22,26 @@ void damier(SDL_Renderer *renderer){
 	SDL_RenderFillRects(renderer, rects, 450); 
 }
 
+void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {   
+  SDL_Surface *tmp = NULL;
+  SDL_Texture *texture = NULL;
+  tmp = SDL_LoadBMP(path);
+  if(NULL == tmp){
+    fprintf(stderr, "Erreur SDL_LoadBMP : %s", SDL_GetError());
+   }
+  texture = SDL_CreateTextureFromSurface(renderer, tmp);
+  SDL_FreeSurface(tmp);     
+  if(NULL == texture){
+    fprintf(stderr, "Erreur SDL_CreateTextureFromSurface : %s", SDL_GetError());
+  }
+  SDL_Rect destination;
+  destination.x = x;
+  destination.y = y;
+  destination.w = 30;
+  destination.h = 30;
+  SDL_RenderCopy(renderer, texture, NULL, &destination);
+}
+
 void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]){
     int direction;
     SDL_Rect rect;
@@ -39,10 +59,11 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
 
 			if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle on affiche une coccinnelle
 				direction=(*matriceCoccinelle[i][j]).directionC;
-                
+                //Afficher Coccinelle correspondant a direction C à la pos (i*30,j*30)
 
 			}else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron du vert
                 direction=(*matricePuceron[i][j]).directionP;
+                //Afficher puceron correspondant a directionP à la pos (i*30,j*30)
 				
 			}
                         
@@ -51,7 +72,7 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
 		}
 
 }
-
+//Main a virer apres mais bcp de trucs devront être déplacer dans le main.c
 int main()
 {
 	//Initialisation
@@ -97,9 +118,6 @@ int main()
 	SDL_RenderPresent(renderer);//MaJ de l'écran
     
 
-
-
-   
     SDL_Delay(5000); //attente de 5 sec
     
     
