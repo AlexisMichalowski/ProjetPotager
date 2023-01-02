@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <C:\Users\Rachel\Documents\M1\Info 1\projet\SDL-release-2.26.1\include\SDL.h>
+#include <SDL.h>
  
 #define TAILLE_FENETRE 900
 #define DIVISEUR 1
