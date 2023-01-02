@@ -90,7 +90,7 @@ int main(){
         affichePotager(potager);
     }else{
         damier(renderer);    //Initialisation de la fenêtre
-        affichePotagerGraphique(renderer,maturite,matricePuceron,matriceCoccinelle);
+        affichePotagerGraphiqueTomates(renderer,maturite,matricePuceron,matriceCoccinelle);
         SDL_RenderPresent(renderer);//MaJ de l'écran
         SDL_Delay(2000); //attente de 2 sec
     }
