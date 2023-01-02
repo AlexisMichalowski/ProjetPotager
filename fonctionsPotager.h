@@ -35,7 +35,7 @@ void initialiserMaturite (int maturite[SIZE][SIZE]);
 int bordsSuppr(int x);
 /*Gere les bords supprimés, renvois 0 si x>(SIZE -1) et (SIZE -1) si x<0*/
 
-char charDirection(int directon);
+char charDirection(int direction);
 /*renvois le charactère associé à une direction, fonctionne pour les pucerons et les coccinnelles*/
 
 void red();

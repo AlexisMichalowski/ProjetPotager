@@ -47,6 +47,7 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
     SDL_Rect rect;
     rect.w = 25;
     rect.h = 25;
+    char* image;
 
     for(int i=0;i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
@@ -60,6 +61,32 @@ void affichePotagerGraphique(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puc
 			if(matriceCoccinelle[i][j]!=NULL){ //si c'est une coccinelle on affiche une coccinnelle
 				direction=(*matriceCoccinelle[i][j]).directionC;
                 //Afficher Coccinelle correspondant a direction C à la pos (i*30,j*30)
+            	switch (direction){           //La position du puceron change en fonction de sa direction
+		            case 0:   
+			            image="../p0.bmp";
+			            break;
+		            case 1: 
+			            image="../p1.bmp";
+			            break;
+		            case 2:
+			            symbole='/';
+			            break;
+		            case 3:
+			            symbole='>';
+			            break;
+		            case 4:
+		        	    symbole='\\';
+		        	    break;
+	                case 5:
+		        	    symbole='v';
+			            break;
+		            case 6:
+			            symbole='/';
+			            break;
+		            case 7:
+			            symbole='<';
+			            break;   
+                placeImage(renderer,"../MiniInfo1/ProjetPotager/p7.bmp",i*30,j*30); 
 
 			}else if(matricePuceron[i][j]!=NULL){ //si c'est un puceron du vert
                 direction=(*matricePuceron[i][j]).directionP;

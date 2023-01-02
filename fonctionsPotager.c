@@ -65,9 +65,9 @@ int bordsSuppr(int x){
 }
 
 
-char charDirection(int directon){
+char charDirection(int direction){
 	char symbole;
-	switch (directon){           //La position du puceron change en fonction de sa direction
+	switch (direction){           //La position du puceron change en fonction de sa direction
 		case 0:   
 			symbole='\\';
 			break;
