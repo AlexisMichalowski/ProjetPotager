@@ -200,8 +200,7 @@ void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][
 	cible.x=5+x;
 	cible.y=5+y;
 
-
-	int rayon =3;
+	int rayon =4;
 	int distance =0;
 	//on parcourt toutes les cases dans un rayon de 3 blocs de la coccinelle
 	for(int i=-3;i<4;i++){
