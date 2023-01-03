@@ -37,7 +37,7 @@ Pour lancer le programme, saisir cette commande dans le terminal pour le compile
   ./main
 ```
 
-Pour nettoyer le programme et le terminal, saisir cette commande dans le terminal
+Pour nettoyer le programme et enlever les fichiers .o, saisir cette commande dans le terminal
 ```bash
   make mrpropr
 ```
