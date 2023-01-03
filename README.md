@@ -30,10 +30,15 @@ Le programme permet également de choisir entre deux niveaux :
 
 ## Lancer le programme
 
-Pour lancer le programme, saisir cette commade dans le terminal pour le compiler et l'executer
+Pour lancer le programme, saisir cette commande dans le terminal pour le compiler et l'executer
 
 ```bash
   make all
   ./main
+```
+
+Pour nettoyer le programme et le terminal, saisir cette commande dans le terminal
+```bash
+  make mrpropr
 ```
 
