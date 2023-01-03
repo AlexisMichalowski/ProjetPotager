@@ -227,20 +227,21 @@ void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][
 	}else if((x<=-2 && y<=-2) || ((x == -1 ) && (y == -1))){
 		direction = 0;
 	}else if((x>=2 && y<=-2) || ((x == 1 ) && (y == -1))){
-		direction =2;
+		direction =6;
 	}else if((x>=2 && y>=2) || ((x == 1 ) && (y == 1))){
 		direction = 4;
 	}else if((x<=-2 && y>=2) || ((x == -1 ) && (y == 1))){
-		direction = 6;
+		direction = 2;
 	}else if((y<=-2) || ((x == 0 ) && (y == -1))){
-		direction = 1;
+		direction = 7;
 	}else if((x>=2) || ((x == 1 ) && (y == 0))){
-		direction = 3;
+		direction = 5;
 	}else if((y>=2) || ((x == 0 ) && (y == 1))){
-		direction =5;
+		direction =3;
 	}else{
-		direction =7;
+		direction =1;
 	}
+
 
 //On met a jour la direction
 (*coccinelle).directionC = direction;
