@@ -3,7 +3,7 @@
 #include "fonctionsCoccinelles.h"
 #include "interfaceGraphique.h"
 
-int main(){
+int main(int argc, char* argv[]){
 
     //initialisation
     srand(time(NULL));  //seed pour les nombres aléatoires

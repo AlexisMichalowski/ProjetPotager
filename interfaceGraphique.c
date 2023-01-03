@@ -44,7 +44,6 @@ void placeImage(SDL_Renderer* renderer, char* path,int x,int y) {
 
 
 void affichePotagerGraphiqueTomates(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]){
-    int direction;
     SDL_Rect rect;
     rect.w = 25;
     rect.h = 25;
@@ -61,13 +60,8 @@ void affichePotagerGraphiqueTomates(SDL_Renderer *renderer,int maturite[SIZE][SI
 }
 void affichePotagerGraphiqueEntites(SDL_Renderer *renderer,int maturite[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]){
     int direction;
-    SDL_Rect rect;
-    rect.w = 25;
-    rect.h = 25;
     for(int i=0;i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
-            rect.x = i*30 +2;
-            rect.y = j*30 +2;
 			if(matriceCoccinelle[j][i]!=NULL){ //si c'est une coccinelle on affiche une coccinnelle
 				direction=(*matriceCoccinelle[j][i]).directionC;
                 //Afficher Coccinelle correspondant a direction C à la pos (i*30,j*30)
