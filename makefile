@@ -1,6 +1,6 @@
 CC=gcc
 flag= -Wall
-SDL_CFLAGS=$(sdl2-config --cflags --libs)
+SDL_CFLAGS=`sdl2-config --cflags --libs`
 
 all:main
 
