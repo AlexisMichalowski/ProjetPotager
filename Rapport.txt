@@ -1,0 +1,13 @@
+Question 1
+
+Question 2
+
+
+
+
+Pour ce projet, nous avons souhaité aler jusqu'au dernier niveau de complexité en incluant la librairie SDL pour intégrer une interface graphique, e plus de la console.
+Nous avons commencé en créant les différentes entités, en nous concentrant d'abord sur le niveau 1 puis le niveau 2.
+Les difficultés ont principalement résidé dans la programmation des orientations des pucerons et coccinnelles qui ont demndé du temps de compréhension, ainsi que pour l'interface graphique. 
+En effet, la librairie SDL nous étant inconnue il nous fallait bien comprendre la documentation pour réaliser l'interface. 
+Malgré les explications, nous avons rencontré des probèmes pour l'orientation du potager et le déplacement des entités une fois sur l'interface graphique. 
+Nous avons réussi à les corriger et l'ensemle du programme est fonctionnel.
