@@ -11,17 +11,17 @@ main:main.o fonctionsPotager.o fonctionsPucerons.o fonctionsCoccinelles.o interf
 main.o: main.c 
 	$(CC) $(flag) -c main.c $(SDL_CFLAGS)
 
-fonctionsPotager.o: fonctionsPotager.c 
-	$(CC) $(flag) -c fonctionsPotager.c
-
-fonctionsPucerons.o: fonctionsPucerons.c fonctionsPotager.o 
-	$(CC) $(flag) -c fonctionsPucerons.c
+interfaceGraphique.o: interfaceGraphique.c fonctionsCoccinelles.o fonctionsPucerons.o fonctionsPotager.o 
+	$(CC) $(flag) -c interfaceGraphique.c $(SDL_CFLAGS)
 
 fonctionsCoccinelles.o: fonctionsCoccinelles.c fonctionsPucerons.o fonctionsPotager.o 
 	$(CC) $(flag) -c fonctionsCoccinelles.c
+	
+fonctionsPucerons.o: fonctionsPucerons.c fonctionsPotager.o 
+	$(CC) $(flag) -c fonctionsPucerons.c
 
-interfaceGraphique.o: interfaceGraphique.c fonctionsCoccinelles.o fonctionsPucerons.o fonctionsPotager.o 
-	$(CC) $(flag) -c interfaceGraphique.c $(SDL_CFLAGS)
+fonctionsPotager.o: fonctionsPotager.c 
+	$(CC) $(flag) -c fonctionsPotager.c
 
 clean:
 	rm -f *.o
