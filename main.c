@@ -106,8 +106,9 @@ int main(int argc, char* argv[]){
     int tour=0; //comptabilise le nombre de tours
     int i =0; //compteur pour se deplacer dans les tableaux d'ensembles
     int mort =0; //Permettra de stocker la mort ou non des individus(pucerons et coccinelles), fonctionne comme un booléen, 0 si vivant, 1 sinon
-
-    while (ensemblePuceron.nombreP >0 ){    //on simule tant qu'il y a des pucerons    
+    int nbTomatesManges = 0; //comptabilise le nombre de tomates mangés, permet de répondre à la question 1 (à inclure dans la condition de tour)
+    int mange =0;//Permettra de stocker si un pucerons à mangé une tomate, fonctionne comme un booléen, 1 si il a mangé, 0 sinon
+    while ((ensemblePuceron.nombreP >0)){    //on simule tant qu'il y a des pucerons, a changer selon centre d'interet pour répondre aux questions , rajouter: && nbTomatesManges<675 pour repondre a la question 1   
         //NIVEAU 1
 
         //mise a jour etat Tomate, toutes les tomates grandissent
@@ -121,8 +122,10 @@ int main(int argc, char* argv[]){
             deplacementPuceron(matricePuceron,&ensemblePuceron.tabP[i]);
                         
             //nourrissement puceron
-            puceronMangeTomate(&ensemblePuceron.tabP[i],maturite);
-
+            mange=puceronMangeTomate(&ensemblePuceron.tabP[i],maturite);
+            if(mange ==1){
+                nbTomatesManges++;
+            }
             //reproduction Puceron
             reproductionPuceron(&ensemblePuceron,&ensemblePuceron.tabP[i],matricePuceron);
 
@@ -178,7 +181,9 @@ int main(int argc, char* argv[]){
             //affichePotager(potager); 
             affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
         }else{
-            damier(renderer);    //Support du potager
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0,255); //set la couleur sur noir 
+            SDL_RenderClear(renderer); //remplis en boir
+            damier(renderer);    //Support du potager, fait un damier blanc sur le noir
             affichePotagerGraphiqueTomates(renderer,maturite,matricePuceron,matriceCoccinelle);
             affichePotagerGraphiqueEntites(renderer,maturite,matricePuceron,matriceCoccinelle);
             SDL_RenderPresent(renderer);//MaJ de l'écran

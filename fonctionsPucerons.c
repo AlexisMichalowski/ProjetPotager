@@ -295,13 +295,16 @@ int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int mat
 }
 
 
-void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){    
+int puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]){   
+	int mange=0; 
     if (maturite[(*puceron).coordP.x][(*puceron).coordP.y] >4){                           /* le puceron mange la tomate uniquement si elle existe, changement v2*/
         maturite[(*puceron).coordP.x][(*puceron).coordP.y] = 0;
         (*puceron).tourSuccessifTomate++ ;           /*on ajoute +1 au nombre de tomates consécutives mangées*/
+		mange=1;
     }else{
     (*puceron).tourSuccessifTomate = 0;   /* il n'a pas mangé de tomate ce tour ci, donc compteur retourne a 0*/
     }        
+	return mange;
 }
 
 

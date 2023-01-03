@@ -59,8 +59,9 @@ void orientationPuceron(Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE],int
 int boolOrientationP(Puceron puceron,Puceron* matricePuceron[SIZE][SIZE],int maturite[SIZE][SIZE]);
 /*renvois 1 si le puceron doit se réorienter (il n'y a pas de tomate mure dans sa direction ou elle n'est pas libre), 0 sinon*/
 
-void puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]);
-/* Lorsque le puceron est sur la meme case qu'une tomate mature, remet la maturité de la tomate à 0 et compte le nombre de tomates consécutives mangées*/
+int puceronMangeTomate(Puceron *puceron, int maturite[SIZE][SIZE]);
+/* Lorsque le puceron est sur la meme case qu'une tomate mature, remet la maturité de la tomate à 0 et compte le nombre de tomates consécutives mangées
+renvois 1 si le puceron a mangé une tomate, 0 sinon*/
 
 void reproductionPuceron(EnsemblePuceron *ensembleP,Puceron *puceron,Puceron* matricePuceron[SIZE][SIZE]);
 /*si le puceron a mangé des tomates pendant 5 tours consécutif, ajoute un puceron adjacent*/

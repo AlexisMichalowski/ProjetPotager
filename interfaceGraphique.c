@@ -10,7 +10,7 @@ void quitteSDL(SDL_Window *window,SDL_Renderer *renderer){
 
 
 void damier(SDL_Renderer *renderer){
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 120);
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); //set la couleur sur blanc
 	SDL_Rect rects[450];
 	size_t i = 0;
 	for(i = 0; i < 450; i++){   
