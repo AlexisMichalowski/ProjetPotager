@@ -208,7 +208,7 @@ void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][
 		for(int j=-3;j<4;j++){
 			if((matricePuceron[bordsSuppr(x+i)][bordsSuppr(y+j)] != NULL) && ((x!=x+i)||(y!=y+j))){ 
 			/*si il y a un puceron dans une des cases a un rayon de 3 blocs, gestion des bords supprimés + on ne regarde pas la case ou se situe la coccinnelle*/
-				distance= (abs(i)+abs(j)/2)+1/2;   //comme la distance est un int, vas prendre la valeur entière seulement, permettant d'avoir la valeur correspondant à l'écart entre les 2 cases
+				distance= (abs(i)+abs(j)/2)+1/2;   //comme la distance est un int, vas prendre la valeur entière seulement, permettant d'avoir la valeur correspondant à l'écart entre la case de la coccinelle et du puceron
 
 				if(rayon >= distance){
 					rayon = distance;
@@ -219,9 +219,10 @@ void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][
 		}
 	}
 
+	//Position relative du puceron par rapport a la coccinelle
 	x=cible.x -x;
 	y=cible.y-y;
-	//Calcul de la direction en fonction de la position du puceron cible
+	//Calcul de la direction en fonction de la position du puceron cible, direction en fonction de la postion du pucerons 
 	if(x==5){
 		direction =rand()%8;  //Si x est toujours ==5, il n'y a pas de puceron dans un rayon de 3 case, donc la coccinelle s'oriente au hasard
 	}else if((x<=-2 && y<=-2) || ((x == -1 ) && (y == -1))){

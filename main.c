@@ -35,7 +35,7 @@ int main(int argc, char* argv[]){
         }
     
         //creation fenetre
-        window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,   //fenetre carrée pour potager
+        window = SDL_CreateWindow("SimulationPotager", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,   //fenetre carrée pour potager
                                     900,900, SDL_WINDOW_SHOWN);
         //gestion erreur creation
         if(NULL == window){
