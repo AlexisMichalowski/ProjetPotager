@@ -64,7 +64,7 @@ Coord caseAdjacenteLibreAleatoireCoccinelle(Coccinelle* matriceCoccinelle[SIZE][
 /*Renvois une case adjacente sans Coccinelle aléatoire*/
 
 void orientationCoccinelle(Coccinelle* coccinelle,Puceron* matricePuceron[SIZE][SIZE]);
-/*Change la direction de la coccinelle pour l'orienter vers un puceron dans un rayon de 3 cases*/
+/*Change la direction de la coccinelle pour l'orienter vers un puceron dans un rayon de 3 cases si il y en a un, sinon direction aléatoire*/
 
 void affichePotagerCouleur(char potager[SIZE][SIZE],Puceron* matricePuceron[SIZE][SIZE],Coccinelle* matriceCoccinelle[SIZE][SIZE]);
 /*Affiche le Potager avec les bonnes couleurs*/

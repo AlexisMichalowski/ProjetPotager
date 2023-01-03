@@ -17,9 +17,6 @@ typedef struct Coord
    } Coord;
 
 
-void initialiserPotager();
-/* Crée un Potager Initialisé, avec des tomates Grosses à Chaque Cases*/
-
 void affichePotager(char mat[SIZE][SIZE]);
 /*Affiche une Matrice de char de taille SIZExSIZE*/
 

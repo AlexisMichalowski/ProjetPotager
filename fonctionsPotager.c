@@ -1,14 +1,5 @@
 #include "fonctionsPotager.h"
 
-
-void initialiserPotager(char potager[SIZE][SIZE]){
-	for (int i=0;i<SIZE;i++){
-		for (int j=0;j<SIZE;j++){
-			potager[i][j]='O';
-			}
-		}
-	}
-	
 void affichePotager(char mat[SIZE][SIZE]){
 	for(int i=0;i<SIZE;i++){
 		for(int j=0;j<SIZE;j++){
