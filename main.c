@@ -3,6 +3,7 @@
 #include "fonctionsCoccinelles.h"
 #include "interfaceGraphique.h"
 
+#define TOURSMAX 200000
 int main(int argc, char* argv[]){
 
     //initialisation
@@ -108,7 +109,7 @@ int main(int argc, char* argv[]){
     int mort =0; //Permettra de stocker la mort ou non des individus(pucerons et coccinelles), fonctionne comme un booléen, 0 si vivant, 1 sinon
     int nbTomatesManges = 0; //comptabilise le nombre de tomates mangés, permet de répondre à la question 1 (à inclure dans la condition de tour)
     int mange =0;//Permettra de stocker si un pucerons à mangé une tomate, fonctionne comme un booléen, 1 si il a mangé, 0 sinon
-    while ((ensemblePuceron.nombreP >0)){    //on simule tant qu'il y a des pucerons, a changer selon centre d'interet pour répondre aux questions , rajouter: && nbTomatesManges<675 pour repondre a la question 1   
+    while ((ensemblePuceron.nombreP >0 && tour<TOURSMAX)){    //on simule tant qu'il y a des pucerons, avec une limite de tours, a changer selon centre d'interet pour répondre aux questions , rajouter: && nbTomatesManges<675 pour repondre a la question 1   
         //NIVEAU 1
 
         //mise a jour etat Tomate, toutes les tomates grandissent
@@ -180,6 +181,7 @@ int main(int argc, char* argv[]){
             printf("Etat à la fin du tour n %d \n",tour);
             //affichePotager(potager); 
             affichePotagerCouleur(potager,matricePuceron,matriceCoccinelle);
+            //printf("Il y a %d pucerons \n",ensemblePuceron.nombreP);
         }else{
             SDL_SetRenderDrawColor(renderer, 0, 0, 0,255); //set la couleur sur noir 
             SDL_RenderClear(renderer); //remplis en boir
