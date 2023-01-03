@@ -3,7 +3,7 @@ MiniInfo1 BIBS
 
 # Potager
 
-Ce programme permet de simuler un environnement, le potager, représenté par un damier de 30x30 cases. Dans ce potager sont introduits des tomates, des pucerons (représentés en vert) et des coccinelles (représentées en rouge). Ces entités se déplacent et interagissent entre elles en fonction du temps : les tomates murissent, les pucerons mangent les tomates mures, les coccinelles chassent et mangent les pucerons. Les pucerons et les coocinnelles ont également une espérance de vie et peuvent se reproduire.
+Ce programme permet de simuler un environnement, le potager, représenté par un damier de 30x30 cases. Dans ce potager sont introduits des tomates, des pucerons (représentés en vert) et des coccinelles (représentées en rouge). Ces entités se déplacent et interagissent entre elles en fonction du temps : les tomates murissent, les pucerons mangent les tomates mures, les coccinelles chassent et mangent les pucerons. Les pucerons et les coccinelles ont également une espérance de vie et peuvent se reproduire.
 La direction des coccinelles et des tomates est indiquée par les symboles suivants :
 - vers la gauche <
 - vers la droite >
